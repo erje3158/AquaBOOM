@@ -20,7 +20,6 @@
 #define FLUID_H
 
 #include <cmath>
-#include "pipe.h"
 
 class fluid{
 
@@ -28,8 +27,6 @@ private:
 	double density;
 	double bulkModulus;
 	double viscosity;
-
-	double waveSpeed;
 
 public:
 	fluid(){
@@ -44,13 +41,6 @@ public:
 		viscosity = mu;
 	}
 
-	fluid(double rho, double K, double mu, pipe* p){
-		density = rho;
-		bulkModulus = K;
-		viscosity = mu;
-		setWaveSpeed(p);
-	}
-
 	double getDensity();
 	double getBulkModulus();
 	double getViscosity();
@@ -58,9 +48,6 @@ public:
 	void setDensity(double rho);
 	void setBulkModulus(double K);
 	void setViscosity(double mu);
-
-	double getWaveSpeed();
-	void setWaveSpeed(pipe* p);
 
 };
 

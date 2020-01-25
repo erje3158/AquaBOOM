@@ -90,8 +90,8 @@ double singlePhaseSolver::getTotalTime(){
 	return totalTime;
 }
 
-void singlePhaseSolver::setTravelTime(pipe* p, fluid* f){
-	travelTime = p->getLength() / f->getWaveSpeed();
+void singlePhaseSolver::setTravelTime(pipe* p){
+	travelTime = p->getLength() / p->getWaveSpeed();
 }
 
 void singlePhaseSolver::setTimeStep(){
@@ -116,8 +116,8 @@ int singlePhaseSolver::getNumberOfNodes(){
 	return numberOfNodes;
 }
 
-void singlePhaseSolver::setElementSize(fluid* f){
-	elementSize = f->getWaveSpeed() * timeStep;
+void singlePhaseSolver::setElementSize(pipe* p){
+	elementSize = p->getWaveSpeed() * timeStep;
 }
 
 void singlePhaseSolver::setNumberOfTimeSteps(){
@@ -129,8 +129,9 @@ void singlePhaseSolver::setNumberOfNodes(pipe* p){
 }
 
 void singlePhaseSolver::initializeSolutionArrays(){
-	flowRateSolution = new double[numberOfNodes][numberOfTimeSteps]();
-	headSolution = new double[numberOfNodes][numberOfTimeSteps]();
+	//Creates flattened array
+	flowRateSolution = new double[numberOfNodes * numberOfTimeSteps];
+	headSolution = new double[numberOfNodes * numberOfTimeSteps];
 }
 
 

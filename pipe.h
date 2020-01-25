@@ -20,6 +20,7 @@
 #define PIPE_H
 
 #include <cmath>
+#include "fluid.h"
 
 class pipe{
 
@@ -32,6 +33,7 @@ private:
 	double roughness;
 
 	double area;
+	double waveSpeed;
 
 public:
 	pipe(){
@@ -53,6 +55,17 @@ public:
 		setArea();
 	}
 
+	pipe(double d, double l, double t, double E, double nu, double r, fluid* f){
+		diameter = d;
+		length = l;
+		thickness = t;
+		youngsModulus = E;
+		poissonsRatio = nu;
+		roughness = r;
+		setArea();
+		setWaveSpeed(f);
+	}
+
 	double getDiameter();
 	double getLength();
 	double getThickness();
@@ -69,6 +82,9 @@ public:
 
 	double getArea();
 	void setArea();
+
+	double getWaveSpeed();
+	void setWaveSpeed(fluid* f);
 
 };
 

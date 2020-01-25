@@ -75,7 +75,7 @@ class singlePhaseSolver{
 		double getTimeStep();
 		double getTotalTime();
 
-		void setTravelTime(pipe* p, fluid* f);
+		void setTravelTime(pipe* p);
 		void setTimeStep();
 		void setTotalTime();
 
@@ -83,7 +83,7 @@ class singlePhaseSolver{
 		int getNumberOfTimeSteps();
 		int getNumberOfNodes();
 
-		void setElementSize(fluid* f);
+		void setElementSize(pipe* p);
 		void setNumberOfTimeSteps();
 		void setNumberOfNodes(pipe* p);
 

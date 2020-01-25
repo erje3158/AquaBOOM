@@ -42,21 +42,3 @@ void fluid::setBulkModulus(double K){
 void fluid::setViscosity(double mu){
 	viscosity = mu;
 }
-
-double fluid::getWaveSpeed(){
-	return waveSpeed;
-}
-
-void fluid::setWaveSpeed(pipe* p){
-	double numerator, denominator, c1;
-
-	///TODO Add ability to use other c1 values for different axial constraints
-	c1 = 1.0; //for pipe anchored with expansion joints throughout
-	//c1 = 1 - pow(p->getPoissonsRatio(), 2); //c1 refers to axially constrained pipe.
-	//c1 = 2 * p->getThickness() / (p->getDiameter() * (1 + p->getPoissonsRatio())) + 
-	//	p->getDiameter() * (1 - pow(p->getPoissonsRatio(),2) / (p->getDiameter() + p->getThickness()));
-	numerator = pow(bulkModulus / density, 0.5);
-	denominator = pow(1 + c1 * (bulkModulus * p->getDiameter() / (p->getThickness() * p->getYoungsModulus())), 0.5);
-
-	waveSpeed = numerator / denominator;
-}

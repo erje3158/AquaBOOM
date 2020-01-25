@@ -30,8 +30,8 @@ int main(int argc, char * argv[]){
 	cout << "Welcome to AquaBOOM!" << endl;
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
-	pipe* testPipe = new pipe(0.02, 15.22, 0.001, 120000000000, 0.35, 0.0000015);
-	fluid* testFluid = new fluid(998.2, 2200000000, 0.001002, testPipe);
+	fluid* testFluid = new fluid(998.2, 2200000000, 0.001002);
+	pipe* testPipe = new pipe(0.02, 15.22, 0.001, 120000000000, 0.35, 0.0000015, testFluid);
 
 	cout << "Length = " << testPipe->getLength() << endl;
 	cout << "Area = " << testPipe->getArea() << endl << endl;
@@ -40,14 +40,14 @@ int main(int argc, char * argv[]){
 
 	testSolver->setFlowVelocity(testPipe);
 	testSolver->setRenoldsNumber(testPipe, testFluid);
-	cout << "WaveSpeed = " << testFluid->getWaveSpeed() << endl;
+	cout << "WaveSpeed = " << testPipe->getWaveSpeed() << endl;
 	cout << "Flow Velocity = " << testSolver->getFlowVelocity() << endl;
 	cout << "Renolds Number = " << testSolver->getRenoldsNumber() << endl << endl;
 
-	testSolver->setTravelTime(testPipe, testFluid);
+	testSolver->setTravelTime(testPipe);
 	testSolver->setTimeStep();
 	testSolver->setTotalTime();
-	testSolver->setElementSize(testFluid);
+	testSolver->setElementSize(testPipe);
 	testSolver->setNumberOfTimeSteps();
 	testSolver->setNumberOfNodes(testPipe);
 	cout << "Travel Time = " << testSolver->getTravelTime() << endl;
