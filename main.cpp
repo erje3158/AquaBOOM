@@ -36,20 +36,11 @@ int main(int argc, char * argv[]){
 	cout << "Length = " << testPipe->getLength() << endl;
 	cout << "Area = " << testPipe->getArea() << endl << endl;
 
-	singlePhaseSolver* testSolver = new singlePhaseSolver(0.000156, 46.0, 0.018, 48, 20);
+	singlePhaseSolver* testSolver = new singlePhaseSolver(0.000156, 46.0, 0.018, 48, 20, testPipe, testFluid);
 
-	testSolver->setFlowVelocity(testPipe);
-	testSolver->setRenoldsNumber(testPipe, testFluid);
 	cout << "WaveSpeed = " << testPipe->getWaveSpeed() << endl;
 	cout << "Flow Velocity = " << testSolver->getFlowVelocity() << endl;
 	cout << "Renolds Number = " << testSolver->getRenoldsNumber() << endl << endl;
-
-	testSolver->setTravelTime(testPipe);
-	testSolver->setTimeStep();
-	testSolver->setTotalTime();
-	testSolver->setElementSize(testPipe);
-	testSolver->setNumberOfTimeSteps();
-	testSolver->setNumberOfNodes(testPipe);
 	cout << "Travel Time = " << testSolver->getTravelTime() << endl;
 	cout << "Time Step = " << testSolver->getTimeStep() << endl;
 	cout << "Total Time = " << testSolver->getTotalTime() << endl;

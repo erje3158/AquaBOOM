@@ -70,12 +70,12 @@ double singlePhaseSolver::getRenoldsNumber(){
 	return renoldsNumber;
 }
 
-void singlePhaseSolver::setFlowVelocity(pipe* p){
-	flowVelocity = flowRate / p->getArea();
+void singlePhaseSolver::setFlowVelocity(){
+	flowVelocity = flowRate / inputPipe->getArea();
 }
 
-void singlePhaseSolver::setRenoldsNumber(pipe* p, fluid* f){
-	renoldsNumber = f->getDensity() * flowVelocity * p->getDiameter() / f->getViscosity();
+void singlePhaseSolver::setRenoldsNumber(){
+	renoldsNumber = inputFluid->getDensity() * flowVelocity * inputPipe->getDiameter() / inputFluid->getViscosity();
 }
 
 double singlePhaseSolver::getTravelTime(){
@@ -90,8 +90,8 @@ double singlePhaseSolver::getTotalTime(){
 	return totalTime;
 }
 
-void singlePhaseSolver::setTravelTime(pipe* p){
-	travelTime = p->getLength() / p->getWaveSpeed();
+void singlePhaseSolver::setTravelTime(){
+	travelTime = inputPipe->getLength() / inputPipe->getWaveSpeed();
 }
 
 void singlePhaseSolver::setTimeStep(){
@@ -116,16 +116,16 @@ int singlePhaseSolver::getNumberOfNodes(){
 	return numberOfNodes;
 }
 
-void singlePhaseSolver::setElementSize(pipe* p){
-	elementSize = p->getWaveSpeed() * timeStep;
+void singlePhaseSolver::setElementSize(){
+	elementSize = inputPipe->getWaveSpeed() * timeStep;
 }
 
 void singlePhaseSolver::setNumberOfTimeSteps(){
 	numberOfTimeSteps = (int) round(totalTime / timeStep);
 }
 
-void singlePhaseSolver::setNumberOfNodes(pipe* p){
-	numberOfNodes = (int) round(p->getLength() / elementSize);
+void singlePhaseSolver::setNumberOfNodes(){
+	numberOfNodes = (int) round(inputPipe->getLength() / elementSize);
 }
 
 void singlePhaseSolver::initializeSolutionArrays(){

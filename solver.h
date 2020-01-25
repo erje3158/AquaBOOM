@@ -44,13 +44,26 @@ class singlePhaseSolver{
 		double* flowRateSolution;
 		double* headSolution;
 
+		fluid* inputFluid;
+		pipe* inputPipe;
+
 	public:
-		singlePhaseSolver(double Q0, double H, double t_v, int numElem, int osc){
+		singlePhaseSolver(double Q0, double H, double t_v, int numElem, int osc, pipe* p, fluid* f){
 			flowRate = Q0;
 			reservoirHeight = H;
 			valveClosingTime = t_v;
 			numberOfElements = numElem;
 			oscillations = osc;
+			inputPipe = p;
+			inputFluid = f;
+			setFlowVelocity();
+			setRenoldsNumber();
+			setTravelTime();
+			setTimeStep();
+			setTotalTime();
+			setElementSize();
+			setNumberOfTimeSteps();
+			setNumberOfNodes();
 		}
 
 		int getNumberOfElements();
@@ -68,14 +81,14 @@ class singlePhaseSolver{
 		double getFlowVelocity();
 		double getRenoldsNumber();
 
-		void setFlowVelocity(pipe* p);
-		void setRenoldsNumber(pipe* p, fluid* f);
+		void setFlowVelocity();
+		void setRenoldsNumber();
 
 		double getTravelTime();
 		double getTimeStep();
 		double getTotalTime();
 
-		void setTravelTime(pipe* p);
+		void setTravelTime();
 		void setTimeStep();
 		void setTotalTime();
 
@@ -83,9 +96,9 @@ class singlePhaseSolver{
 		int getNumberOfTimeSteps();
 		int getNumberOfNodes();
 
-		void setElementSize(pipe* p);
+		void setElementSize();
 		void setNumberOfTimeSteps();
-		void setNumberOfNodes(pipe* p);
+		void setNumberOfNodes();
 
 		void initializeSolutionArrays();
 
