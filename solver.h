@@ -17,6 +17,9 @@
 // All Rights Reserved																		   //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
+#ifndef SOLVER_H
+#define SOLVER_H
+
 #include <math.h>
 #include "pipe.h"
 #include "fluid.h"
@@ -48,6 +51,14 @@ class singlePhaseSolver{
 		pipe* inputPipe;
 
 	public:
+		singlePhaseSolver(){
+			flowRate = 0.0;
+			reservoirHeight = 0.0;
+			valveClosingTime = 0.0;
+			numberOfElements = 0;
+			oscillations = 0;
+		}
+
 		singlePhaseSolver(double Q0, double H, double t_v, int numElem, int osc, pipe* p, fluid* f){
 			flowRate = Q0;
 			reservoirHeight = H;
@@ -78,6 +89,12 @@ class singlePhaseSolver{
 		void setReservoirHeight(double H);
 		void setValveClosingTime(double t_v);
 
+		fluid* getFluid();
+		pipe* getPipe();
+
+		void setFluid(fluid* f);
+		void setPipe(pipe* p);
+
 		double getFlowVelocity();
 		double getRenoldsNumber();
 
@@ -104,5 +121,4 @@ class singlePhaseSolver{
 
 };
 
-
-
+#endif /* SOLVER_H */

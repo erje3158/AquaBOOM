@@ -16,3 +16,14 @@
 // Copyright © 2020 Erik Jensen																   //
 // All Rights Reserved																		   //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "pipe.h"
+#include "fluid.h"
+#include "solver.h"
+
+fluid* readFluidInput(const char * inputFile);
+pipe* readPipeInput(const char * inputFile, fluid* f);
+singlePhaseSolver* readSinglePhaseSolverInput(const char * inputFile, fluid* f, pipe* p);

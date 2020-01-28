@@ -62,6 +62,21 @@ void singlePhaseSolver::setValveClosingTime(double t_v){
 	valveClosingTime = t_v;
 }
 
+fluid* singlePhaseSolver::getFluid(){
+	return inputFluid;
+}
+pipe* singlePhaseSolver::getPipe(){
+	return inputPipe;
+}
+
+void singlePhaseSolver::setFluid(fluid* f){
+	inputFluid = f;
+}
+
+void singlePhaseSolver::setPipe(pipe* p){
+	inputPipe = p;
+}
+
 double singlePhaseSolver::getFlowVelocity(){
 	return flowVelocity;
 }

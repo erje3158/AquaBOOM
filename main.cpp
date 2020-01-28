@@ -22,6 +22,9 @@
 #include "pipe.h"
 #include "fluid.h"
 #include "solver.h"
+#include "input.h"
+
+using namespace std;
 
 int main(int argc, char * argv[]){
 
@@ -30,14 +33,15 @@ int main(int argc, char * argv[]){
 	cout << "Welcome to AquaBOOM!" << endl;
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
-	fluid* testFluid = new fluid(998.2, 2200000000, 0.001002);
-	pipe* testPipe = new pipe(0.02, 15.22, 0.001, 120000000000, 0.35, 0.0000015, testFluid);
+	const char * inputFile = "./inputFile.txt";
+	fluid* testFluid = readFluidInput(inputFile);
+	pipe* testPipe = readPipeInput(inputFile, testFluid);
+	singlePhaseSolver* testSolver = readSinglePhaseSolverInput(inputFile, testFluid, testPipe);
+
+	///TODO Code currently can only handle 1 pipe and 1 fluid
 
 	cout << "Length = " << testPipe->getLength() << endl;
 	cout << "Area = " << testPipe->getArea() << endl << endl;
-
-	singlePhaseSolver* testSolver = new singlePhaseSolver(0.000156, 46.0, 0.018, 48, 20, testPipe, testFluid);
-
 	cout << "WaveSpeed = " << testPipe->getWaveSpeed() << endl;
 	cout << "Flow Velocity = " << testSolver->getFlowVelocity() << endl;
 	cout << "Renolds Number = " << testSolver->getRenoldsNumber() << endl << endl;
